@@ -3,12 +3,32 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 
-import { Table, Layout, Button, Input } from 'antd';
+import { Table, Layout, Button, Input,Checkbox ,Form} from 'antd';
 
 import './App.css';
 
 const { Header, Footer, Sider, Content } = Layout;
+
 const { TextArea } = Input;
+
+
+
+const layout = {
+  labelCol: {
+    span: 8,
+  },
+  wrapperCol: {
+    span: 16,
+  },
+};
+const tailLayout = {
+  wrapperCol: {
+    offset: 8,
+    span: 16,
+  },
+};
+
+
 class LogInPage extends Component{
   constructor(props){
     super(props);
@@ -18,10 +38,11 @@ class LogInPage extends Component{
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeUser = this.handleChangeUser.bind(this);
+   
   }
+  
 
-
-
+  
 
 
   async handleSubmit(event) {
@@ -67,24 +88,55 @@ class LogInPage extends Component{
     }
   }
 
+
   render() {
     return (
-      <Layout>
-        <Header >HELLOOO</Header>
-        <div class="centered" >
-          <form onSubmit={this.handleSubmit} >
-            <label>
-              Username:
-              <Input type="text" value={this.state.user} onChange={this.handleChangeUser} />
-            </label>
-
-            <Button htmlType="submit">
-              Submit
-            </Button>
-          </form>
-        </div >
-      <Footer/>
-      </Layout>
+      <Form
+        className="centered"
+        {...layout}
+        name="basic"
+        initialValues={{
+          remember: true,
+        }}
+        onFinish={this.handleChangeUser}
+        onFinishFailed={null}
+      >
+        <Form.Item
+          label="Username"
+          name="username"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your username!',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+  
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your password!',
+            },
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
+  
+        <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
+  
+        <Form.Item {...tailLayout}>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
     );
   }
 }
