@@ -63,7 +63,7 @@ class LoginForm extends Component {
             initialValues={{
               remember: true,
             }}
-            onFinish={this.props.handleSubmit(this.onSubmit)}
+            onFinish={(values) => this.props.handleSubmit(this.onSubmit(values))}
             onFinishFailed={null}
             className='centered'
           >
