@@ -12,9 +12,10 @@ import {
   LOGOUT_SUCCESS,
 } from './types';
 
+const backend = "http://127.0.0.1:8000/"
 // LOGOUT USER
-export const logout = () => async (dispatch, getState) => {
-    await axios.post('/api/auth/logout', null, tokenConfig(getState));
+export const logout =() => async (dispatch, getState) => {
+    await axios.post(backend+'/api/auth/logout', null, tokenConfig(getState));
     dispatch({
       type: LOGOUT_SUCCESS
     });
@@ -26,7 +27,7 @@ export const loadUser = () => async (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
 
   try {
-    const res = await axios.get('/api/auth/user', tokenConfig(getState));
+    const res = await axios.get(backend+'/api/auth/user', tokenConfig(getState));
     dispatch({
       type: USER_LOADED,
       payload: res.data
@@ -51,7 +52,7 @@ export const login = ({ username, password }) => async dispatch => {
   const body = JSON.stringify({ username, password });
 
   try {
-    const res = await axios.post('/api/auth/login', body, config);
+    const res = await axios.post(backend+'/api/auth/login', body, config);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data

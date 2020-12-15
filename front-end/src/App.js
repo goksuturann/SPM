@@ -9,6 +9,8 @@ import LoginForm from './components/auth/LoginFrom'; // added
 import PrivateRoute from './components/common/PrivateRoute'; // added
 import Header from './components/layout/Headers';
 import { loadUser } from './actions/auth'; // added
+import './App.css';
+
 
 class App extends Component {
   // added

@@ -5,7 +5,26 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { login } from '../../actions/auth';
+import 'antd/dist/antd.css';
 
+import { Table, Layout, Button, Input,Checkbox ,Form} from 'antd';
+
+const { Header, Footer, Sider, Content } = Layout;
+const layout = {
+  labelCol: {
+    span: 8,
+  },
+  wrapperCol: {
+    span: 16,
+  },
+};
+const tailLayout = {
+  wrapperCol: {
+    offset: 8,
+    span: 16,
+  },
+};
+const { TextArea } = Input;
 class LoginForm extends Component {
   renderField = ({ input, label, type, meta: { touched, error } }) => {
     return (
@@ -37,36 +56,56 @@ class LoginForm extends Component {
       return <Redirect to='/' />;
     }
     return (
-      <div className='ui container'>
-        <div className='ui segment'>
-          <form
-            onSubmit={this.props.handleSubmit(this.onSubmit)}
-            className='ui form'
+      <div>
+          <Form
+            {...layout}
+            name="basic"
+            initialValues={{
+              remember: true,
+            }}
+            onFinish={this.props.handleSubmit(this.onSubmit)}
+            onFinishFailed={null}
+            className='centered'
           >
-            <Field
-              name='username'
-              type='text'
-              component={this.renderField}
-              label='Username'
-            />
-            <Field
-              name='password'
-              type='password'
-              component={this.renderField}
-              label='Password'
-            />
-            <Field
-              name='non_field_errors'
-              type='hidden'
-              component={this.hiddenField}
-            />
-            <button className='ui primary button'>Login</button>
-          </form>
+            <Form.Item
+          label="Username"
+          name="username"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your username!',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+  
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your password!',
+            },
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
+        <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
+        <Form.Item {...tailLayout}>
+
+        <Button type="primary" htmlType="submit">
+            Login
+          </Button>
+          </Form.Item>
+          </Form>
           <p style={{ marginTop: '1rem' }}>
             Don't have an account? <Link to='/register'>Register</Link>
-          </p>
-        </div>
-      </div>
+          </p>s
+          </div>
     );
   }
 }
