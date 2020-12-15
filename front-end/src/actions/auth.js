@@ -12,7 +12,7 @@ import {
   LOGOUT_SUCCESS,
 } from './types';
 
-const backend = "http://127.0.0.1:8000/"
+const backend = "http://127.0.0.1:8000"
 // LOGOUT USER
 export const logout =() => async (dispatch, getState) => {
     await axios.post(backend+'/api/auth/logout', null, tokenConfig(getState));
