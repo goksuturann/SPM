@@ -9,8 +9,8 @@
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/backend/backend/manage.py",
-            "python": "${command:python.interpreterPath}",
-            "envFile": "${workspaceFolder}/backend/mypython",
+            "pythonPath": "${command:python.interpreterPath}",
+            "envFile": "${workspaceFolder}/backend/backend/.env",
             "args": [
                 "runserver"
             ],
@@ -21,7 +21,7 @@
             "name": "Launch via NPM",
             "request": "launch",
             "runtimeArgs": [
-                "start"
+                "start",
             ],
             "runtimeExecutable": "npm",
             "skipFiles": [
