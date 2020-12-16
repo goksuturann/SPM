@@ -28,8 +28,10 @@ class HeaderMain extends Component {
     // added
     const guestLinks = (
 
-      <></>
-    );
+        <Link to='/register_employee' className='item'>
+          <Button>register</Button>
+        </Link>    
+        );
 
     // updated
     return (

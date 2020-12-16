@@ -88,11 +88,11 @@ const residences = [
     },
 };
 
-class RegisterEmployeeForm extends Component {
+class RegisterEmployerForm extends Component {
   
 
   onSubmit = formValues => {
-    this.props.register(formValues, "employee");
+    this.props.register(formValues, "employer");
   };
 
   
@@ -251,32 +251,15 @@ class RegisterEmployeeForm extends Component {
    }
 }
 
-const required = value => (value ? undefined : 'Required');
-
-const minLength = min => value =>
-  value && value.length < min
-    ? `Must be at least ${min} characters`
-    : undefined;
-
-const minLength3 = minLength(3);
-
-const maxLength = max => value =>
-  value && value.length > max ? `Must be ${max} characters or less` : undefined;
-
-const maxLength15 = maxLength(15);
-
-const passwordsMatch = (value, allValues) =>
-  value !== allValues.password ? 'Passwords do not match' : undefined;
-
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-RegisterEmployeeForm = connect(
+RegisterEmployerForm = connect(
   mapStateToProps,
   { register }
-)(RegisterEmployeeForm);
+)(RegisterEmployerForm);
 
 export default reduxForm({
   form: 'registerForm'
-})(RegisterEmployeeForm);
+})(RegisterEmployerForm);

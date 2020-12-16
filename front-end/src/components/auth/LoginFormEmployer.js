@@ -27,26 +27,7 @@ const tailLayout = {
 const { TextArea } = Input;
 class LoginForm extends Component {
   
-  renderField = ({ input, label, type, meta: { touched, error } }) => {
-    return (
-      <div className={`field ${touched && error ? 'error' : ''}`}>
-        <label>{label}</label>
-        <input {...input} type={type} />
-        {touched && error && (
-          <span className='ui pointing red basic label'>{error}</span>
-        )}
-      </div>
-    );
-  };
-
-  hiddenField = ({ type, meta: { error } }) => {
-    return (
-      <div className='field'>
-        <input type={type} />
-        {error && <div className='ui red message'>{error}</div>}
-      </div>
-    );
-  };
+  
 
   onSubmit = formValues => {
     console.log(formValues);

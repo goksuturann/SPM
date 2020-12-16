@@ -4,6 +4,8 @@ import {
     USER_LOADING,
     USER_LOADED,
     AUTH_ERROR,
+    REGISTER_FAIL,
+    REGISTER_SUCCESS,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT_SUCCESS,
@@ -39,6 +41,8 @@ import {
           ...action.payload
         };
       case AUTH_ERROR:
+      case REGISTER_FAIL:
+      case REGISTER_SUCCESS:
       case LOGIN_FAIL:
         localStorage.removeItem('token');
         return {
