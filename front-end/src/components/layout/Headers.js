@@ -4,11 +4,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'; // added
 import { connect } from 'react-redux'; // added
 import { logout } from '../../actions/auth'; // added
-
-class Header extends Component {
+import { Menu, Dropdown, Row, Col, Card,Button } from 'antd';
+import "./Layout.css";
+class HeaderMain extends Component {
   render() {
     const { user, isAuthenticated } = this.props.auth; // added
-
+    
     // added
     const userLinks = (
       <div className='right menu'>
@@ -26,24 +27,15 @@ class Header extends Component {
 
     // added
     const guestLinks = (
-      <div className='right menu'>
-        <Link to='/register' className='item'>
-          Sign Up
-        </Link>
-        <Link to='/login' className='item'>
-          Login
-        </Link>
-      </div>
+
+      <></>
     );
 
     // updated
     return (
       <div className='ui inverted menu' style={{ borderRadius: '0' }}>
-        <Link to='/' className='header item'>
-          TodoCRUD
-        </Link>
         <Link to='/' className='item'>
-          Home
+          <Button>Home</Button>
         </Link>
         {isAuthenticated ? userLinks : guestLinks}
       </div>
@@ -60,4 +52,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { logout }
-)(Header);
+)(HeaderMain);

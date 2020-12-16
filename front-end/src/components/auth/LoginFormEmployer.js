@@ -26,6 +26,7 @@ const tailLayout = {
 };
 const { TextArea } = Input;
 class LoginForm extends Component {
+  
   renderField = ({ input, label, type, meta: { touched, error } }) => {
     return (
       <div className={`field ${touched && error ? 'error' : ''}`}>
@@ -48,7 +49,8 @@ class LoginForm extends Component {
   };
 
   onSubmit = formValues => {
-    this.props.login(formValues);
+    console.log(formValues);
+    this.props.login(formValues, "employer");
   };
 
   render() {
@@ -65,7 +67,6 @@ class LoginForm extends Component {
             }}
             onFinish={(values) => this.props.handleSubmit(this.onSubmit(values))}
             onFinishFailed={null}
-            className='centered'
           >
             <Form.Item
           label="Username"
@@ -102,9 +103,6 @@ class LoginForm extends Component {
           </Button>
           </Form.Item>
           </Form>
-          <p style={{ marginTop: '1rem' }}>
-            Don't have an account? <Link to='/register'>Register</Link>
-          </p>s
           </div>
     );
   }

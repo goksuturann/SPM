@@ -40,19 +40,19 @@ export const loadUser = () => async (dispatch, getState) => {
 };
 
 // LOGIN USER
-export const login = ({ username, password, type }) => async dispatch => {
+export const login = ({ username, password }, type) => async dispatch => {
   // Headers
   const config = {
     headers: {
       'Content-Type': 'application/json'
     }
   };
-
+  console.log(type);
   // Request Body
   const body = JSON.stringify({ username, password });
 
   try {
-    const res = await axios.post(backend+'/api/auth/login', body, config);
+    const res = await axios.post(backend+'/api/auth/login'+type, body, config);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data

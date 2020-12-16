@@ -121,7 +121,7 @@ class LogInPage extends Component{
             {
               required: true,
               message: 'Please input your password!',
-            },
+
           ]}
         >
           <Input.Password />

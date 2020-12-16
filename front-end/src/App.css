@@ -36,7 +36,12 @@
     transform: rotate(360deg);
   }
 }
-
+.card{
+  border-radius: 10px;
+  margin-top: 15%;
+  min-height: 55vh;
+  min-width: fit-content;
+}
 .ant-collapse .ant-collapse-item .ant-collapse-header .anticon {
   left: initial;
   right: 16px;
@@ -67,7 +72,7 @@
   background: #3499ec;
 }
 .ant-layout-content {
-  background: rgba(16, 142, 233, 1);
+  background: linen;
   color: #fff;
   min-height: 120px;
   line-height: 120px;
@@ -83,3 +88,24 @@
 }
 
 
+.site-layout-content {
+  min-height: 280px;
+  padding: 24px;
+  background: #fff;
+}
+#components-layout-demo-top .logo {
+  float: left;
+  width: 120px;
+  height: 31px;
+  margin: 16px 24px 16px 0;
+  background: rgba(255, 255, 255, 0.3);
+}
+.ant-row-rtl #components-layout-demo-top .logo {
+  float: right;
+  margin: 16px 0 16px 24px;
+}
+
+#body{
+  background-color: linen;
+  height: 100vh !important;
+}
