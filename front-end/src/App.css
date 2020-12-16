@@ -109,3 +109,13 @@
   background-color: linen;
   height: 100vh !important;
 }
+.avatar-uploader > .ant-upload {
+  width: 128px;
+  height: 128px;
+}
+.ant-upload-picture-card-wrapper {
+  display: inline-block;
+  width: 100%;
+  margin: 5vh;
+  justify-self: center;
+}

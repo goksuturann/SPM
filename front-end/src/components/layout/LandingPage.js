@@ -7,7 +7,6 @@ import { connect } from 'react-redux'; // added
 import { Layout, Menu, Breadcrumb } from 'antd';
 import LoginFormEmployee from '../auth/LoginFormEmployee'; // added
 import LoginFormEmployer from '../auth/LoginFormEmployer'; // added
-import RegisterEmployeePage from '../registration/RegisterEmployeePage'; // added
 
 import { Card, Col, Row, Button } from 'antd';
 
