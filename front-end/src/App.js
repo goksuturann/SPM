@@ -5,7 +5,7 @@ import store from './store';
 import { Router, Route, Switch } from 'react-router-dom'; // added
 
 import history from './history'; // added
-import LoginForm from './components/auth/LoginFrom'; // added
+import LoginForm from './components/auth/LoginForm'; // added
 import PrivateRoute from './components/common/PrivateRoute'; // added
 import Header from './components/layout/Headers';
 import { loadUser } from './actions/auth'; // added

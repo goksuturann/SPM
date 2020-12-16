@@ -57,6 +57,7 @@ MIDDLEWARE = [
 REST_FRAMEWORK = {
     # 'DEFAULT_PERMISSION_CLASSES': [  # remove
     #     'rest_framework.permissions.AllowAny'
+    
     # ],
     'DEFAULT_AUTHENTICATION_CLASSES': (  # added
         'knox.auth.TokenAuthentication',

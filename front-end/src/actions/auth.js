@@ -40,7 +40,7 @@ export const loadUser = () => async (dispatch, getState) => {
 };
 
 // LOGIN USER
-export const login = ({ username, password }) => async dispatch => {
+export const login = ({ username, password, type }) => async dispatch => {
   // Headers
   const config = {
     headers: {
