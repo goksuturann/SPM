@@ -2,6 +2,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth import authenticate
 from .models import User, Employer, Employee
 from rest_framework import serializers
+from jobs.serializers import JobSerializer
 
 User._meta.get_field('email')._unique = True
 
@@ -15,17 +16,19 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'username', 'email', 'password', 'is_employer', 'is_employee']
 
-class EmployerSerializer(serializers.ModelSerializer):
+class EmployeeSerializer(serializers.ModelSerializer):
     user = UserSerializer(required=True)
+    jobs = JobSerializer(many=True)
     class Meta:
-        model = Employer
-        fields = ['user', 'company']
+        model = Employee
+        fields = ['user', 'position','company','jobs']
 
 class EmployerSerializer(serializers.ModelSerializer):
     user = UserSerializer(required=True)
+    jobs = JobSerializer(many=True)
     class Meta:
         model = Employer
-        fields = ['user', 'company']
+        fields = ['user', 'company', 'jobs']
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
