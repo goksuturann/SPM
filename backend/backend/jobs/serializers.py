@@ -5,20 +5,20 @@ from accounts.models import Employer, Employee
 class JobSerializer(serializers.ModelSerializer):
     class Meta:
         model = Job
-        fields = '_all_'
+        fields = '__all__'
 
 class KeywordSerializer(serializers.ModelSerializer):
     jobs = JobSerializer(many=True)
     class Meta:
         model = Keyword
-        fields = '_all_'
+        fields = '__all__'
 
 class ExtendedJobSerializer(serializers.ModelSerializer):
     keywords = KeywordSerializer(many=True, required=False)
 
     class Meta:
         model = Job
-        fields = '_all_'
+        fields = '__all__'
 
 """    def create(self, validated_data):
         this_employer = Employer.objects.get(id = validated_data.pop('id'))
