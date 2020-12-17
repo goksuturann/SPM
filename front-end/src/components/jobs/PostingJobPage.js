@@ -1,15 +1,19 @@
 import React, { Component, useState } from 'react';
+import PropTypes from 'prop-types';
 import {Link, Redirect} from 'react-router-dom';
-import {Field, reduxForm} from 'redux-form';
+import {Field, FormSection, reduxForm} from 'redux-form';
 import {DatePicker, Input, Button, Form, message} from 'antd';
-import {Checkbox, Select} from 'antd';
+import {Checkbox, Select, Layout} from 'antd';
+import CompanyInfo from './CompanyInfo';
 
 import './post-job-form.css';
 
+const { Sider, Content } = Layout;
+
 export default class PostJobForm extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = { 
                     date: ''
                 };
@@ -61,76 +65,79 @@ export default class PostJobForm extends Component {
     //<Checkbox onChange={onChange}>Checkbox</Checkbox> for onChange
 
     render() {
-        const keywordOptions = ['Software Developer', 'Software', 'Frontend', 'Backend', 'Fullstack'];
+        const {keywords}= this.props;
         return(
             <div className='post-job-form-container'>
-                <div className='job-form-container '>
-                <Form className="job-form">
-                    <Form.Item className='job-item'
-                        label="Job Title"
-                        name="job_title"
-                        rules={[{ required: true, message: 'Please input the job title!' }]}
-                    >
-                        <Input />
-                    </Form.Item>
-                    <Form.Item className="date-picker-checkbox" label="Job Offer End Date">
-                        <DatePicker />
-                    </Form.Item>
-                    <Form.Item className='job-item'
-                        label="Keyword"
-                        name="keyword"
-                    >
-                        <Select
-                            mode="multiple"
-                            allowClear
-                            style={{ width: '100%' }}
-                            placeholder="Please select keywords"
-                            defaultValue={['Software Developer']}
-                            //onChange={handleChange}
+                <div className='job-form-container'>
+                    <Form className="job-form">
+                        <Form.Item>
+                            <CompanyInfo className='company-info'></CompanyInfo>
+                        </Form.Item>
+                        <Form.Item className='job-item'
+                            label="Job Title"
+                            name="job_title"
+                            rules={[{ required: true, message: 'Please input the job title!' }]}
                         >
-                        {keywordOptions}
-                        </Select>
-                    </Form.Item>
-                    <Form.Item className='job-item'
-                        label="Salary"
-                        name="salary"
-                    >
-                        <Input />
-                    </Form.Item>
-                    <Form.Item className='job-item'
-                        label="Minimum Requirements"
-                        name="min_requirements"
-                        rules={[{ required: true, message: 'Please enter the minimum requirements!' }]}
-                    >
-                        <Input.TextArea />
-                    </Form.Item>
-                    <Form.Item className='job-item'
-                        label="Preferred Qualifications"
-                        name="pref_qualifications"
-                        rules={[{ required: true, message: 'Please enter the preferred qualifications!' }]}
-                    >
-                        <Input.TextArea/>
-                    </Form.Item>
-                    <Form.Item className="checkbox">
-                        <Checkbox>Enable Communication</Checkbox>
-                    </Form.Item>
-                    <Form.Item className='job-item'
-                    wrapperCol={{
-                    xs: {
-                        span: 24,
-                        offset: 0,
-                    },
-                    sm: {
-                        span: 16,
-                        offset: 8,
-                    },
-                    }}
-                    >
-                        <Button type="primary" htmlType="submit">
-                            Submit
-                        </Button>
-                    </Form.Item>
-                </Form>
+                            <Input />
+                        </Form.Item>
+                        <Form.Item className="date-picker-checkbox" label="Job Offer End Date">
+                            <DatePicker />
+                        </Form.Item>
+                        <Form.Item className='job-item'
+                            label="Keyword"
+                            name="keyword"
+                        >
+                            <Select
+                                mode="multiple"
+                                allowClear
+                                style={{ width: '100%' }}
+                                placeholder="Please select keywords"
+                                defaultValue={['Software Developer']}
+                                //onChange={handleChange}
+                            >
+                            {keywords}
+                            </Select>
+                        </Form.Item>
+                        <Form.Item className='job-item'
+                            label="Salary"
+                            name="salary"
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item className='job-item'
+                            label="Minimum Requirements"
+                            name="min_requirements"
+                            rules={[{ required: true, message: 'Please enter the minimum requirements!' }]}
+                        >
+                            <Input.TextArea />
+                        </Form.Item>
+                        <Form.Item className='job-item'
+                            label="Preferred Qualifications"
+                            name="pref_qualifications"
+                            rules={[{ required: true, message: 'Please enter the preferred qualifications!' }]}
+                        >
+                            <Input.TextArea/>
+                        </Form.Item>
+                        <Form.Item className="checkbox">
+                            <Checkbox>Enable Communication</Checkbox>
+                        </Form.Item>
+                        <Form.Item className='job-item'
+                        wrapperCol={{
+                        xs: {
+                            span: 24,
+                            offset: 0,
+                        },
+                        sm: {
+                            span: 16,
+                            offset: 8,
+                        },
+                        }}
+                        >
+                            <Button type="primary" htmlType="submit">
+                                Submit
+                            </Button>
+                        </Form.Item>
+                    </Form>
                 </div>
                 
             </div>
@@ -138,5 +145,13 @@ export default class PostJobForm extends Component {
     }
 }
 
+PostJobForm.propTypes = {
+    employer: PropTypes.object.isRequired,
+    keywords: PropTypes.array,
+    companyImage: PropTypes.string,
+};
 
+PostJobForm.defaultProps = {
+    keywords: ['Software Developer', 'Software', 'Frontend', 'Backend', 'Fullstack'],
+};
 

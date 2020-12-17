@@ -21,6 +21,7 @@ import {
 import { register } from '../../actions/auth';
 import { Upload, message } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import './register.css'
 
 const { Option } = Select;
 const AutoCompleteOption = AutoComplete.Option;
@@ -116,9 +117,9 @@ class RegisterEmployerForm extends Component {
     );
     return (
       <div>
-      <h1 style={{marginLeft:"5vh"}}>Register as an Employee</h1>
+      <h1 className='title'>Register as an Employee</h1>
       
-      <Col flex>
+      <Col className='container'>
       
         <Form
           style={{ marginRight:"10vh", padding:"5vh 5vh 5vh 5vh" }}
