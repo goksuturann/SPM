@@ -40,10 +40,10 @@ class JobViewSet(viewsets.ModelViewSet):
         serialized_obj["status"] = "Success"
         return JsonResponse(serialized_obj)
 
-    @action(methods=['post'],detail=True, url_path="add-applicant", url_name="add-applicant")
+    @action(methods=['post'],detail=True, url_path="add-applicants", url_name="add-applicants")
     def add_applicant(self, request, pk=True):
         serialized_obj = {}
-        job = Jobs.objects.get(id=pk)
+        job = Job.objects.get(id=pk)
         rbody = json.loads(request.body.decode('utf-8'))
         print(rbody)
         jsonUsersString = rbody["data"]["users"]
@@ -52,6 +52,17 @@ class JobViewSet(viewsets.ModelViewSet):
         for x in range(len(usersArray)):
             job.applicants.add(Employee.objects.get(id__id = str(usersArray[x])))
         job.save()
+        serialized_obj["status"] = "Success"
+        return JsonResponse(serialized_obj)
+    
+    @action(methods=['post'],detail=False,url_path="add-applicant",url_name="add-applicant")
+    def add_single_applicant(self, request,pk=True):
+        serialized_obj = {}
+        job = Job.objects.get(id=pk)
+        applicant = Employee.objects.get(user_id = self.request.data.get("employee_id"))
+        job.applicants.add(applicant)
+        job.save()
+        
         serialized_obj["status"] = "Success"
         return JsonResponse(serialized_obj)
 
