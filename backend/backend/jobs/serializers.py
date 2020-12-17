@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from .models import Job, Keyword
 from accounts.models import Employer, Employee
-from accounts.serializers import EmployerSerializer
 
 class JobSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,7 +14,6 @@ class KeywordSerializer(serializers.ModelSerializer):
         fields = '_all_'
 
 class ExtendedJobSerializer(serializers.ModelSerializer):
-    employer = EmployerSerializer(many=True)
     keywords = KeywordSerializer(many=True, required=False)
 
     class Meta:
@@ -29,4 +27,4 @@ class ExtendedJobSerializer(serializers.ModelSerializer):
             key
         
         job = Job.objects.create(employer=this_employer, job_title=validated_data.pop('job_title'), min_requirements=validated_data.pop('min_requirements'), recommend_requirements=validated_data.pop('recommend_requirements'), salary=validated_data.pop('salary'), offer_end_date
-=validated_data.pop('offer_end_date'), keywords=validated_data.pop('keywords') )""""
+=validated_data.pop('offer_end_date'), keywords=validated_data.pop('keywords') )"""

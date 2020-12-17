@@ -36,7 +36,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 class EmployerRegisterSerializer(serializers.ModelSerializer):
     user = UserSerializer(required=True)
-
+    
     class Meta:
         model = Employer
         fields = ('user', 'company')

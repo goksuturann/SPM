@@ -3,17 +3,24 @@ from django.contrib.auth.models import User, Group
 from rest_framework import viewsets, generics,permissions
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from django.http JsonResponse
+from django.http import JsonResponse
 from .serializers import ExtendedJobSerializer
 from accounts.models import Employer, Employee
 from accounts.serializers import EmployerSerializer
 class JobViewSet(viewsets.ModelViewSet):
-    serializer_class=ExtendedJobSerializer
+    serializer_class = ExtendedJobSerializer
+
+    def get_queryset(self):
+        if("employerId" in self.request.query_params):
+            queryset = Jobs.objects.filter(employer = self.request.query_params.get("employerId"))
+        else:
+            queryset = Jobs.objects.all()
+        return queryset
 
     @action(methods=['post'],detail=True,url_path="create-job",url_name="create-job")
     def create_job(self, serializer):
         serialized_obj = {}
-        this_employer = Employer.objects.get(id =' self.request.data.get('employer_id'))
+        this_employer = Employer.objects.get(id = self.request.data.get('employer_id'))
         keywords_array_request = self.request.data.get('keywords')
         keywords_array = None
         for x in range(len(keywords_array_request)):
