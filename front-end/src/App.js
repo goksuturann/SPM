@@ -6,6 +6,7 @@ import { Router, Route, Switch, Link, Redirect } from 'react-router-dom'; // add
 
 import history from './history'; // added
 import LandingPage from './components/layout/LandingPage'; // added
+import PostJobForm from './components/jobs/PostingJobPage';
 
 import PrivateRoute from './components/common/PrivateRoute'; // added
 import HeaderMain from './components/layout/Headers';
@@ -38,11 +39,11 @@ class App extends Component {
             </Route> 
             <Route path='/register_employer'>
                 <RegisterEmployerForm/>
-            </Route>
-             
-            <LandingPage />
-            
-           
+            </Route> 
+            <Route path='/post_job'>
+                <PostJobForm/>
+            </Route> 
+              <LandingPage />
             </Switch>
           </Content>
 
