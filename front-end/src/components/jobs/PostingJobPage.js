@@ -5,12 +5,13 @@ import {Field, FormSection, reduxForm} from 'redux-form';
 import {DatePicker, Input, Button, Form, message} from 'antd';
 import {Checkbox, Select, Layout} from 'antd';
 import CompanyInfo from './CompanyInfo';
+import { connect } from 'react-redux';
 
 import './post-job-form.css';
 
 const { Sider, Content } = Layout;
 
-export default class PostJobForm extends Component {
+class PostJobForm extends Component {
 
     constructor(props) {
         super(props);
@@ -65,6 +66,9 @@ export default class PostJobForm extends Component {
     //<Checkbox onChange={onChange}>Checkbox</Checkbox> for onChange
 
     render() {
+        if(!this.props.isAuthenticated){
+            return <Redirect to='/register_employee'/>;
+        }
         const {keywords}= this.props;
         return(
             <div className='post-job-form-container'>
@@ -81,7 +85,7 @@ export default class PostJobForm extends Component {
                             <Input />
                         </Form.Item>
                         <Form.Item className="date-picker-checkbox" label="Job Offer End Date">
-                            <DatePicker />
+                            <DatePicker onChange={this.handleChange}/>
                         </Form.Item>
                         <Form.Item className='job-item'
                             label="Keyword"
@@ -146,7 +150,6 @@ export default class PostJobForm extends Component {
 }
 
 PostJobForm.propTypes = {
-    employer: PropTypes.object.isRequired,
     keywords: PropTypes.array,
     companyImage: PropTypes.string,
 };
@@ -154,4 +157,11 @@ PostJobForm.propTypes = {
 PostJobForm.defaultProps = {
     keywords: ['Software Developer', 'Software', 'Frontend', 'Backend', 'Fullstack'],
 };
+
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+  });
+  
+export default connect(mapStateToProps)(PostJobForm);
 
