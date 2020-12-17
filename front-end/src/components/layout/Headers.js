@@ -9,18 +9,27 @@ import "./Layout.css";
 class HeaderMain extends Component {
   render() {
     const { user, isAuthenticated } = this.props.auth; // added
+
+    const jobPostLink = (
+      <Link to='/post_job' className='item'>
+          <Button>Post Job</Button>
+        </Link> 
+    );
     
     // added
+    //TODO add job post link
     const userLinks = (
       <div className='right menu'>
         <div className='ui simple dropdown item'>
           {user ? user.username : ''}
           <i className='dropdown icon' />
-          <div className='menu'>
-            <a onClick={this.props.logout} className='item'>
-              Logout
-            </a>
-          </div>
+          <ul>
+            <div className='menu'>
+              <a onClick={this.props.logout} className='item'>
+                Logout
+              </a>
+            </div>
+          </ul>
         </div>
       </div>
     );
@@ -38,6 +47,7 @@ class HeaderMain extends Component {
       <div className='ui inverted menu' style={{ borderRadius: '0' }}>
         <Link to='/' className='item'>
           <Button>Home</Button>
+          {user && jobPostLink}
         </Link>
         {isAuthenticated ? userLinks : guestLinks}
       </div>
