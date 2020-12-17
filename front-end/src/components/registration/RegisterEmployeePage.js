@@ -133,12 +133,6 @@ class RegisterEmployeeForm extends Component {
           <Form.Item
            name="profilepic"
            label="Profile Photo"
-           rules={[
-            {
-              required: true,
-              message: 'Please input your name!',
-            }
-          ]}
           >
             <Upload
               name="avatar"
@@ -154,7 +148,7 @@ class RegisterEmployeeForm extends Component {
 
           </Form.Item>
           <Form.Item
-            name="name"
+            name="first_name"
             label="Name"
             rules={[
               {
