@@ -3,19 +3,22 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
 import { Router, Route, Switch, Link, Redirect } from 'react-router-dom'; // added
+import spm_logo from './spm_logo.jpeg';
 
 import history from './history'; // added
 import LandingPage from './components/layout/LandingPage'; // added
 import PostJobForm from './components/jobs/PostingJobPage';
+import HomePage from './main/HomePage';
 
 import PrivateRoute from './components/common/PrivateRoute'; // added
 import HeaderMain from './components/layout/Headers';
 import RegisterEmployeeForm from "./components/registration/RegisterEmployeePage";
 import RegisterEmployerForm from "./components/registration/RegisterEmployerPage";
 
-import { loadUser } from './actions/auth'; // added
+import { loadUser} from './actions/auth'; // added
 import './App.css';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu, Breadcrumb, Button } from 'antd';
+import LogoutButton from './main/LogoutButton';
 const { Header, Content, Footer } = Layout;
 
 class App extends Component {
@@ -43,10 +46,16 @@ class App extends Component {
             <Route path='/post_job'>
                 <PostJobForm/>
             </Route> 
+            <Route path='/home'>
+                <HomePage/>
+            </Route> 
               <LandingPage />
             </Switch>
           </Content>
-
+          <Footer className='App-footer' style={{ textAlign: 'center'}}>
+            <div className='img-container'>IS ÇOK BASVURU ÇOK</div>
+            <div style={{ float: 'right'}}><LogoutButton/></div>
+          </Footer>
         </Router>
       </Provider>
     );

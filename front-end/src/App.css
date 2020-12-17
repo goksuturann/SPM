@@ -24,6 +24,19 @@
   color: white;
 }
 
+.App-footer {
+  background-color: #282c34;
+  min-height: 100px;
+  flex-direction: column;
+  color: white;
+}
+
+.img-container{
+   font-family: 'Brush Script MT', cursive;
+   font-size: 30px;
+   float: left;
+}
+
 .App-link {
   color: #61dafb;
 }

@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'; // added
 import { connect } from 'react-redux'; // added
-import { logout } from '../../actions/auth'; // added
 import { Menu, Dropdown, Row, Col, Card,Button } from 'antd';
 import "./Layout.css";
 class HeaderMain extends Component {
@@ -15,41 +14,24 @@ class HeaderMain extends Component {
           <Button>Post Job</Button>
         </Link> 
     );
-    
-    // added
-    //TODO add job post link
-    const userLinks = (
-      <div className='right menu'>
-        <div className='ui simple dropdown item'>
-          {user ? user.username : ''}
-          <i className='dropdown icon' />
-          <ul>
-            <div className='menu'>
-              <a onClick={this.props.logout} className='item'>
-                Logout
-              </a>
-            </div>
-          </ul>
-        </div>
-      </div>
-    );
+
 
     // added
     const guestLinks = (
-
         <Link to='/register_employee' className='item'>
-          <Button>register</Button>
+          <Button>Register</Button>
         </Link>    
-        );
+    );
 
     // updated
+    //TODO IS USER EMPLYOER???
     return (
       <div className='ui inverted menu' style={{ borderRadius: '0' }}>
-        <Link to='/' className='item'>
+        <Link to='/home' className='item'>
           <Button>Home</Button>
-          {user && jobPostLink}
         </Link>
-        {isAuthenticated ? userLinks : guestLinks}
+        {user && jobPostLink}
+        {!isAuthenticated && guestLinks}
       </div>
     );
   }
@@ -62,6 +44,5 @@ const mapStateToProps = state => ({
 
 // updated
 export default connect(
-  mapStateToProps,
-  { logout }
+  mapStateToProps
 )(HeaderMain);
