@@ -8,3 +8,5 @@ export const LOGIN_FAIL = 'LOGIN_FAIL'; // added
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'; // added
 export const JOB_POST_FAIL = 'JOB_POST_FAIL';
 export const JOB_POST_SUCCESS = 'JOB_POST_SUCCESS';
+export const APPLICATION_SUCCESS = 'APPLICATION_SUCCESS';
+export const APPLICATION_FAIL = 'APPLICATION_FAIL';
