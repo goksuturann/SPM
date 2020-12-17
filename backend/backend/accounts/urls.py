@@ -8,8 +8,8 @@ urlpatterns = [
     path('', include('knox.urls')),
     path('user', UserAPIView.as_view()),
     #path('register', RegisterAPIView.as_view()),
-    path('register/employer', EmployerRegisterAPIView.as_view() ), 
-    path('register/employee', EmployeeRegisterAPIView.as_view() ), 
+    path('registeremployer', EmployerRegisterAPIView.as_view() ), 
+    path('registeremployee', EmployeeRegisterAPIView.as_view() ), 
     path('loginemployee', EmployeeLoginAPIView.as_view()),
     path('loginemployer', EmployerLoginAPIView.as_view()),
 
