@@ -104,8 +104,6 @@ class RegisterEmployerForm extends Component {
     this.props.register(formValues, "employer");
   };
 
-  
-
   render() {
     if (this.props.isAuthenticated) {
       return <Redirect to='/' />;
@@ -132,12 +130,6 @@ class RegisterEmployerForm extends Component {
           <Form.Item
            name="profilepic"
            label="Profile Photo"
-           rules={[
-            {
-              required: true,
-              message: 'Please input your name!',
-            }
-          ]}
           >
             <Upload
               name="avatar"
@@ -153,13 +145,9 @@ class RegisterEmployerForm extends Component {
 
           </Form.Item>
           <Form.Item
-            name="name"
+            name="first_name"
             label="Name"
             rules={[
-              {
-                type: 'name',
-                message: 'The input is not valid name!',
-              },
               {
                 required: true,
                 message: 'Please input your name!',
@@ -177,6 +165,12 @@ class RegisterEmployerForm extends Component {
                 message: 'Please input your surname!',
               },
             ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name="company"
+            label="Company Name"
           >
             <Input />
           </Form.Item>

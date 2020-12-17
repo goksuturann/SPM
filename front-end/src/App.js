@@ -38,8 +38,9 @@ class App extends Component {
             </Route> 
             <Route path='/register_employer'>
                 <RegisterEmployerForm/>
-            </Route> 
-              <LandingPage />
+            </Route>
+             
+            <LandingPage />
             
            
             </Switch>

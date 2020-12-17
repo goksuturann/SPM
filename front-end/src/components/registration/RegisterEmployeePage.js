@@ -181,6 +181,18 @@ class RegisterEmployeeForm extends Component {
             <Input />
           </Form.Item>
           <Form.Item
+            name="company"
+            label="Company Name"
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name="position"
+            label="Position Name"
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
             name="email"
             label="E-mail"
             rules={[
