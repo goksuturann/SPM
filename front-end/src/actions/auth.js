@@ -42,28 +42,48 @@ export const loadUser = () => async (dispatch, getState) => {
 };
 
 // REGISTER USER
-export const register = ({ username, email, password },type) => async dispatch => {
+export const register = ({company="",email,password,username,first_name,last_name, position=""},type) => async dispatch => {
   // Headers
   const config = {
     headers: {
       'Content-Type': 'application/json'
     }
   };
+  if(type=="employer"){
+    // Request Body
+    const user = {email,password,username,first_name,last_name};
+    const body = JSON.stringify({company,user});
 
-  // Request Body
-  const body = JSON.stringify({ username, email, password });
+    try {
+      const res = await axios.post(backend+'/api/auth/register'+type, body, config);
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data
+      });
+    } catch (err) {
+      dispatch({
+        type: REGISTER_FAIL
+      });
+      dispatch(stopSubmit('registerForm', err.response.data));
+    }
 
-  try {
-    const res = await axios.post(backend+'/api/auth/register/'+type, body, config);
-    dispatch({
-      type: REGISTER_SUCCESS,
-      payload: res.data
-    });
-  } catch (err) {
-    dispatch({
-      type: REGISTER_FAIL
-    });
-    dispatch(stopSubmit('registerForm', err.response.data));
+  }
+  else if(type=="employee"){
+    const user = {email,password,username,first_name,last_name};
+    const body = JSON.stringify({company,position,user});
+    // Request Body
+    try {
+      const res = await axios.post(backend+'/api/auth/register'+type, body, config);
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data
+      });
+    } catch (err) {
+      dispatch({
+        type: REGISTER_FAIL
+      });
+      dispatch(stopSubmit('registerForm', err.response.data));
+    }
   }
 };
 
