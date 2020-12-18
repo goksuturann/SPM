@@ -18,7 +18,7 @@ class LandingPage extends Component {
 
         const { user, isAuthenticated } = this.props.auth; // added
         if (isAuthenticated) {
-            return <Redirect to='/' />;
+            return <Redirect to='/home' />;
           }
         return(
         <div className="site-card-wrapper">

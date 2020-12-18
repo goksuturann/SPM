@@ -18,10 +18,10 @@ import {
     AutoComplete,
   } from 'antd';
   
-import { register } from '../../actions/auth';
+
 import { Upload, message } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import './register.css'
+import './profile-page.css'
 
 const { Option } = Select;
 const AutoCompleteOption = AutoComplete.Option;
@@ -77,7 +77,7 @@ function beforeUpload(file) {
   return isJpgOrPng && isLt2M;
 }
 
-class RegisterEmployeeForm extends Component {
+export class ProfilePage extends Component {
   constructor(props){
     super(props);
     this.state={
@@ -101,38 +101,35 @@ class RegisterEmployeeForm extends Component {
     }
   };
 
-  onSubmit = formValues => {
-    this.props.register(formValues, "employee");
-  };
-
-  
 
   render() {
-    if (this.props.isAuthenticated) {
-      return <Redirect to='/home' />;
+    const {isAuthenticated, user} = this.props;
+    if (!isAuthenticated) {
+      return <Redirect to='/' />;
     }
+
     const uploadButton = (
-      <div>
-        {this.state.loading ? <LoadingOutlined /> : <PlusOutlined />}
-        <div style={{ marginTop: 8 }}>Upload</div>
-      </div>
-    );
+        <div>
+          {this.state.loading ? <LoadingOutlined /> : <PlusOutlined />}
+          <div style={{ marginTop: 8 }}>Upload</div>
+        </div>
+      );
     return (
       <div>
-      <h1 className='title'>Register as an Employee</h1>
+      <h1 className='title'>Profile</h1>
       
       <Col className='container'>
       
         <Form
           style={{ marginRight:"10vh", padding:"5vh 5vh 5vh 5vh" }}
           {...formItemLayout}
-          name="register"
+          name="profile"
           onFinish={values => this.onSubmit(values)}
           scrollToFirstError
         >
           <Form.Item
            name="profilepic"
-           label="Profile Photo"
+           label="Upload/Change Profile Photo"
           >
             <Upload
               name="avatar"
@@ -149,70 +146,32 @@ class RegisterEmployeeForm extends Component {
           </Form.Item>
           <Form.Item
             name="first_name"
-            label="Name"
-            rules={[
-              {
-                type: 'name',
-                message: 'The input is not valid name!',
-              },
-              {
-                required: true,
-                message: 'Please input your name!',
-              },
-            ]}
+            label="Update Name"
           >
-            <Input />
+            <Input/>
           </Form.Item>
           <Form.Item
             name="last_name"
-            label="Last Name"
-            rules={[
-              {
-                required: true,
-                message: 'Please input your surname!',
-              },
-            ]}
+            label="Update Last Name"
           >
-            <Input />
+            <Input/>
           </Form.Item>
           <Form.Item
             name="company"
-            label="Company Name"
+            label="Update Company Name"
           >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            name="position"
-            label="Position Name"
-          >
-            <Input />
+            <Input placeholder={user.company}/>
           </Form.Item>
           <Form.Item
             name="email"
-            label="E-mail"
-            rules={[
-              {
-                type: 'email',
-                message: 'The input is not valid E-mail!',
-              },
-              {
-                required: true,
-                message: 'Please input your E-mail!',
-              },
-            ]}
+            label="Change E-mail Address"
           >
-            <Input />
+            <Input placeholder={user.email}/>
           </Form.Item>
     
           <Form.Item
             name="password"
-            label="Password"
-            rules={[
-              {
-                required: true,
-                message: 'Please input your password!',
-              },
-            ]}
+            label="Change Password"
             hasFeedback
           >
             <Input.Password />
@@ -224,16 +183,11 @@ class RegisterEmployeeForm extends Component {
             dependencies={['password']}
             hasFeedback
             rules={[
-              {
-                required: true,
-                message: 'Please confirm your password!',
-              },
               ({ getFieldValue }) => ({
                 validator(rule, value) {
                   if (!value || getFieldValue('password') === value) {
                     return Promise.resolve();
                   }
-    
                   return Promise.reject('The two passwords that you entered do not match!');
                 },
               }),
@@ -241,46 +195,22 @@ class RegisterEmployeeForm extends Component {
           >
             <Input.Password />
           </Form.Item>
-    
           <Form.Item
             name="username"
             label={
               <span>
-                Username&nbsp;
+                Change Username&nbsp;
                 <Tooltip title="What do you want to be called as?">
                   <QuestionCircleOutlined />
                 </Tooltip>
               </span>
             }
-            rules={[
-              {
-                required: true,
-                message: 'Please input your username!',
-                whitespace: true,
-              },
-            ]}
           >
-            <Input />
-          </Form.Item>
-    
-          <Form.Item
-            name="agreement"
-            valuePropName="checked"
-            rules={[
-              {
-                validator: (_, value) =>
-                  value ? Promise.resolve() : Promise.reject('Should accept agreement'),
-              },
-            ]}
-            {...tailFormItemLayout}
-          >
-            <Checkbox>
-              I have read the <a href="">agreement</a>
-            </Checkbox>
+            <Input placeholder={user.username}/>
           </Form.Item>
           <Form.Item {...tailFormItemLayout}>
             <Button type="primary" htmlType="submit">
-              Register
+              Update Profile
             </Button>
           </Form.Item>
         </Form>
@@ -291,14 +221,8 @@ class RegisterEmployeeForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+    user: state.auth.user,
+    isAuthenticated: state.auth.isAuthenticated,
 });
-
-RegisterEmployeeForm = connect(
-  mapStateToProps,
-  { register }
-)(RegisterEmployeeForm);
-
-export default reduxForm({
-  form: 'registerForm'
-})(RegisterEmployeeForm);
+  
+export default connect(mapStateToProps)(ProfilePage);

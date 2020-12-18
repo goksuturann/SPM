@@ -1,17 +1,14 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {Link, Redirect} from 'react-router-dom';
-import {Field, FormSection, reduxForm} from 'redux-form';
+import {Redirect} from 'react-router-dom';
 import {DatePicker, Input, Button, Form, message} from 'antd';
-import {Checkbox, Select, Layout} from 'antd';
+import {Checkbox, Select} from 'antd';
 import CompanyInfo from './CompanyInfo';
 import { connect } from 'react-redux';
 import { post_job } from '../../actions/jobs';
 
 import './post-job-form.css';
 const { Option } = Select;
-
-const { Sider, Content } = Layout;
 
 class PostJobForm extends Component {
 
@@ -68,8 +65,8 @@ class PostJobForm extends Component {
                         onFinish={values => this.onSubmit(values)}
                         scrollToFirstError
                     >
-                        <Form.Item>
-                            <CompanyInfo className='company-info'></CompanyInfo>
+                        <Form.Item className='company-info'>
+                            <CompanyInfo></CompanyInfo>
                         </Form.Item>
                         <Form.Item className='job-item'
                             label="Job Title"
@@ -91,7 +88,6 @@ class PostJobForm extends Component {
                                 style={{ width: '100%' }}
                                 placeholder="Please select keywords"
                                 defaultValue={['Software Developer']}
-                                //onChange={handleChange}
                             >
                             {children}
                             </Select>
@@ -148,14 +144,14 @@ PostJobForm.propTypes = {
 };
 
 PostJobForm.defaultProps = {
-    keywords: ['Software Developer', 'Software', 'Frontend', 'Backend', 'Fullstack'],
+    keywords: ['Software Developer', 'Software', 'Frontend', 'Backend', 'Fullstack', 'Java', 'Python'],
 };
 
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
-    user: state.auth.user
-  });
+    user: state.auth.user, 
+});
   
 PostJobForm = connect(
     mapStateToProps,

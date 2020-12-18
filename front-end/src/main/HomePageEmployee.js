@@ -9,7 +9,7 @@ const data = [
     {
       job_title: 'Cloud Infrastructure Engineer, Financial Services -- Google Cloud',
       min_req  : 'Bachelor\'s degree in Computer Science, Mathematics, related technical \
-                  field, or equivalent practical experience.\nExperience designing, building, \
+                  field, or equivalent practical experience. Experience designing, building, \
                   and deploying scalable cloud-based solution architectures.'
     },
     {
@@ -19,7 +19,7 @@ const data = [
                   Information Technology) or equivalent practical experience.'
     },
     {
-      job_title: 'Research Scientist, AI -- Amazon',
+      job_title: 'Research Scientist, AI -- Bloomberg',
       min_req  : 'Experience in Artificial Intelligence and Machine Learning.'
     },
     {
@@ -36,7 +36,7 @@ const data = [
       min_req  : 'Currently pursuing Masters, experience in Artificial Intelligence and Machine Learning.'
     },
     {
-      job_title: 'Fullstack Software Developer',
+      job_title: 'Fullstack Software Developer -- IBM',
       min_req  : 'Coding experience in one of the following programming languages: C++, Java, Python or Go.'
     },
     {
@@ -44,7 +44,7 @@ const data = [
       min_req  : 'Experience in Artificial Intelligence and Machine Learning.'
     },
     {
-      job_title: 'Machine Learning Engineer -- Google',
+      job_title: 'Machine Learning Engineer -- Bloomberg',
       min_req  : 'Experience in Artificial Intelligence and Machine Learning.'
     },
     {
@@ -53,7 +53,7 @@ const data = [
     },
   ];
 
-export default class HomePage extends Component { 
+export default class HomePageEmployee extends Component { 
 
     constructor(props) {
         super(props);
@@ -61,7 +61,6 @@ export default class HomePage extends Component {
             jobs: data,
         };
     }
-
     
 
     render(){
@@ -72,10 +71,10 @@ export default class HomePage extends Component {
               itemLayout="horizontal"
               dataSource={data}
               renderItem={item => (
-              <List.Item>
+              <List.Item actions={[<a key="list-apply">Apply for Job</a>]}>
                   <List.Item.Meta
                   //avatar={<Avatar src={this.props.avatarSrc} />}
-                  title={<a href="https://careers.google.com/jobs/results/85417408774185670-cloud-infrastructure-engineer-financial-services-google-cloud/?q=infrastructure">{item.job_title}</a>}
+                  title={item.job_title}
                   description={item.min_req}
                   />
               </List.Item>
@@ -86,10 +85,10 @@ export default class HomePage extends Component {
     }
 }
 
-HomePage.propTypes = {
+HomePageEmployee.propTypes = {
   avatarSrc: PropTypes.string,
 };
 
-HomePage.defaultProps = {
+HomePageEmployee.defaultProps = {
   avatarSrc: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
 };

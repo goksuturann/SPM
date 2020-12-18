@@ -9,6 +9,9 @@ import history from './history'; // added
 import LandingPage from './components/layout/LandingPage'; // added
 import PostJobForm from './components/jobs/PostingJobPage';
 import HomePage from './main/HomePage';
+import ViewJobPage from './components/jobs/ViewJobPage'
+import ProfilePage from './main/ProfilePage'
+import HomePageEmployee from './main/HomePageEmployee'
 
 import PrivateRoute from './components/common/PrivateRoute'; // added
 import HeaderMain from './components/layout/Headers';
@@ -49,11 +52,20 @@ class App extends Component {
             <Route path='/home'>
                 <HomePage/>
             </Route> 
+            <Route path='/view_jobs'>
+                <ViewJobPage/>
+            </Route>
+            <Route path='/profile'>
+                <ProfilePage/>
+            </Route>
+            <Route path='/home_employee'>
+                <HomePageEmployee/>
+            </Route>
               <LandingPage />
             </Switch>
           </Content>
           <Footer className='App-footer' style={{ textAlign: 'center'}}>
-            <div className='img-container'>IS ÇOK BASVURU ÇOK</div>
+            <div className='img-container'>İŞ ÇOK BAŞVURU ÇOK</div>
             <div style={{ float: 'right'}}><LogoutButton/></div>
           </Footer>
         </Router>

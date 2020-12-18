@@ -13,6 +13,16 @@
     min-width: 80%;
 }
 
+.company-info{
+  max-width: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+  .company-info {
+    max-width: 100%;
+  }
+}
+
 .job-form {
     margin-left: auto;
     margin-right: auto;
@@ -28,10 +38,3 @@
 
 .checkbox{
 }
-
-  @media screen and (max-width: 600px) {
-    .col-25, .col-75, input[type=submit] {
-      width: 100%;
-      margin-top: 0;
-    }
-  }
