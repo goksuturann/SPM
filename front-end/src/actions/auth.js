@@ -49,7 +49,7 @@ export const register = ({company="",email,password,username,first_name,last_nam
       'Content-Type': 'application/json'
     }
   };
-  if(type=="employer"){
+  if(type === "employer"){
     // Request Body
     const user = {email,password,username,first_name,last_name};
     const body = JSON.stringify({company,user});
@@ -68,7 +68,7 @@ export const register = ({company="",email,password,username,first_name,last_nam
     }
 
   }
-  else if(type=="employee"){
+  else if(type === "employee"){
     const user = {email,password,username,first_name,last_name};
     const body = JSON.stringify({company,position,user});
     // Request Body

@@ -1,0 +1,16 @@
+.main-container{
+    margin-left: 10%;
+    margin-right: 10%;
+    justify-content: center;
+}
+
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.list-container{
+    justify-content: center;
+}
